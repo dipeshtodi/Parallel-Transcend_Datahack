@@ -1,0 +1,43 @@
+import requests
+import pandas as pd
+from bs4 import BeautifulSoup as bs
+
+def get_urls():
+    urls = []
+    num_links = int(input("Enter the number of links: "))
+    while len(urls) < num_links:
+        link = input("Enter the link: ")
+        urls.append(link)
+    return urls
+
+def calculate_flashcards(data):
+    total_flashcards = sum([1 if isinstance(data[key], (str, int))
+                            else len(data[key]) 
+                            for key in data])
+    return total_flashcards // 2
+
+urls_to_process = get_urls()
+
+print("Processing flashcards...")
+
+flashcard_data = {"Front": [], "Back": []}
+
+for url in urls_to_process:
+    headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0'}
+    response = requests.get(url, headers=headers)
+    page_content = response.content
+    soup = bs(page_content, 'html.parser')
+    
+    for question, answer in zip(soup.select('a.SetPageTerm-wordText'), soup.select('a.SetPageTerm-definitionText')):
+        flashcard_data['Front'].append(question.get_text(strip=True, separator='\n'))
+        flashcard_data['Back'].append(answer.get_text(strip=True, separator='\n'))
+
+total_flashcards = calculate_flashcards(flashcard_data)
+print(f"\nProcessing completed...\nTotal flashcards processed: {total_flashcards}")
+
+flashcards_df = pd.DataFrame(flashcard_data)
+
+file_name = input("Enter the name for the CSV file (include .csv): ")
+flashcards_df.to_csv(file_name, index=False, header=False)
+
+print(f"\nCSV file '{file_name}' saved successfully.\nHappy Learning!\n")
