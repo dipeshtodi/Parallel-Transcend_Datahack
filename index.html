@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Flashcard Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-brain"></i> AI Flashcard Quiz</h1>
+            <p class="subtitle">Learn anything with AI-powered flashcards</p>
+        </header>
+
+        <div class="input-section">
+            <div class="input-wrapper">
+                <input type="text" id="topic" placeholder="Enter a topic to study..." />
+                <button id="generate" class="primary-btn">
+                    <i class="fas fa-magic"></i> Generate Flashcards
+                </button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading-container">
+            <div class="spinner"></div>
+            <p>Generating your personalized flashcards...</p>
+        </div>
+
+        <div id="flashcard-container" class="flashcard-container">
+            <div class="progress-bar">
+                <div id="progress" class="progress"></div>
+            </div>
+            
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <p id="question" class="question"></p>
+                        <div class="image-container">
+                            <img id="flashcard-image" alt="Flashcard visualization" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="previous" class="control-btn">
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <span id="card-counter" class="counter">Card 0 of 0</span>
+                <button id="next" class="control-btn">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="quiz-end" class="quiz-end">
+            <h2><i class="fas fa-trophy"></i> Quiz Completed!</h2>
+            <div class="results-container">
+                <div id="performance-chart" class="chart"></div>
+                <p id="recommendation" class="recommendation"></p>
+            </div>
+            <button id="restart" class="primary-btn">
+                <i class="fas fa-redo"></i> Start New Quiz
+            </button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
