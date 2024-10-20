@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reinforcement Learning Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Reinforcement Learning Quiz</h1>
+    <div class="card-container">
+      <div class="card" id="ai" onclick="startQuiz('ai')">
+        <h2>Artificial Intelligence</h2>
+        <p>Test your knowledge of AI fundamentals.</p>
+      </div>
+      <div class="card" id="ml" onclick="startQuiz('ml')">
+        <h2>Machine Learning</h2>
+        <p>How well do you know ML algorithms?</p>
+      </div>
+      <div class="card" id="cc" onclick="startQuiz('cc')">
+        <h2>Cloud Computing</h2>
+        <p>Explore cloud technologies and services.</p>
+      </div>
+    </div>
+
+    <div id="quiz" class="hidden">
+      <h2 id="topic-title"></h2>
+      <div id="question-container">
+        <p id="question"></p>
+        <div class="options">
+          <button onclick="checkAnswer(0)">Option 1</button>
+          <button onclick="checkAnswer(1)">Option 2</button>
+          <button onclick="checkAnswer(2)">Option 3</button>
+          <button onclick="checkAnswer(3)">Option 4</button>
+        </div>
+      </div>
+      <div id="result" class="hidden"></div>
+      <div id="score-display" class="hidden">Current Score: <span id="score">0</span></div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
